@@ -1,3 +1,4 @@
+# Automated Folder Backup Script, needs some imrprovements
 import os
 import shutil
 import datetime
@@ -18,3 +19,6 @@ def copy_folder_to_dir(source, dest):
         print(f"Folder already exists in {dest_dir}")
 
 schedule.every().day.at("10:00").do(lambda : copy_folder_to_dir(source_dir, destination_dir))
+while True:
+    schedule.run_pending()
+    time.sleep(60)
