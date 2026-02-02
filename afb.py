@@ -4,15 +4,17 @@ import datetime
 import schedule
 import time
 
-source_dir = "C:\Users\abhi\\OneDriv\\Picture\\Screenshots"
-destination_dir = "D:\Ad\\Cod\\Githu\\Automated File Backup\Destination Dir"
+source_dir = ""
+destination_dir = ""
 
 def copy_folder_to_dir(source, dest):
     today = datetime.date.today()
-    dest_dir = os.path.join(dest, today.str(today))
+    dest_dir = os.path.join(dest, str(today))
 
-    try :
+    try:
         shutil.copytree(source, dest_dir)
         print(f"Folder copied successfully to {dest_dir}")
     except FileExistsError:
         print(f"Folder already exists in {dest_dir}")
+
+schedule.every().day.at("10:00").do(lambda : copy_folder_to_dir(source_dir, destination_dir))
